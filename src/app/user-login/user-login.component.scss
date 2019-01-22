@@ -1,0 +1,55 @@
+.forget-pwd {
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #616161 !important;
+}
+
+.login {
+    border: 30px solid #f8f9fa;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
+    margin: 4px;
+    height: auto;
+    margin: 215px 0px 0px 0px;
+    flex-direction: column;
+    min-width: 380px;
+    border-radius: 5px;
+}
+
+.other-login-text {
+    display: inline-block;
+    position: absolute;
+    font-size: 11px;
+    right: 0px;
+    padding-top: 18px;
+    color: #616161;
+}
+
+.submit {
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    padding: 4px 0;
+}
+.other-login {
+    display: inline-block;
+    margin: 7% auto 0;
+}
+.facebook {
+    background: #3c5a99 !important;
+}
+
+.twitter {
+    background: #1da1f2 !important;
+}
+
+.google {
+    background: #4285f4 !important;
+}
+
+.instagram {
+    background: #e1306c !important;
+}
+input {
+    color: #616161;
+}

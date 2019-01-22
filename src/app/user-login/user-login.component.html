@@ -1,0 +1,42 @@
+<div class="login w-75 bg-light pull-right d-flex mx-4" [formGroup]="loginGroup">
+    <div class="login-header pb-2">
+        <span class="float-right forget-pwd accent" (click)="register()">Register</span>
+        <h3><b style="color:#fbc02d">Login</b></h3>
+    </div>
+    <mat-form-field appearance="outline">
+        <mat-label>
+            <b class="font text-monospace my-4">EMAIL</b>
+        </mat-label>
+        <input matInput type="text" required formControlName="email"/>
+        <mat-error *ngIf="loginGroup.get('email').hasError('required')">
+            * Email is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="loginGroup.get('email').hasError('email') ">
+            * Invalid email
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>
+            <b class="font text-monospace my-4">PASSWORD</b>
+        </mat-label>
+        <input matInput type="password" formControlName="passWord" required />
+        <mat-error *ngIf="loginGroup.get('passWord').hasError('required')">
+            * Password is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+    <div class="mt-2 position-relative">
+        <button [disabled]="loginGroup.invalid && loginGroup.dirty" mat-raised-button color="primary"
+            class="d-inline-block font submit" (click)="submit()"> Login
+        </button>
+        <span>
+            <a class="float-right ml-3 forget-pwd" (click)="forgetPassword()"> Lost your password?</a>
+            <div class="other-login-text float-right">or Login with</div>
+        </span>
+    </div>
+    <div class="other-login">
+        <button mat-mini-fab class="fa fa-facebook mx-1 facebook" (click)="loginWithFacebook()"></button>
+        <button mat-mini-fab class="fa fa-google mx-1 google" (click)="loginWithGoogle()"></button>
+        <button mat-mini-fab class="fa fa-twitter mx-1 twitter" (click)="loginWithTwitter()"></button>
+        <button mat-mini-fab class="fa fa-instagram mx-1 instagram" (click)="loginWithInstagram()"></button>
+    </div>
+</div>

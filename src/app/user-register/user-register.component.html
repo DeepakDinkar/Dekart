@@ -1,0 +1,56 @@
+<div class="login w-75 bg-light pull-right d-flex mx-4" [formGroup]="registerGroup">
+    <div class="login-header pb-2">
+        <span class="float-right forget-pwd accent" (click)="login()">Login</span>
+        <h3>
+            <b style="color:#fbc02d">Register</b>
+        </h3>
+    </div>
+    <mat-form-field appearance="outline">
+        <mat-label>
+            <b class="font text-monospace my-4">USER NAME</b>
+        </mat-label>
+        <input matInput type="text" formControlName="userName" required>
+        <mat-error *ngIf="registerGroup.get('userName').hasError('required')">
+            * User Name is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>
+            <b class="font text-monospace my-4">EMAIL</b>
+        </mat-label>
+        <input matInput type="email" formControlName="email" required>
+        <mat-error *ngIf="registerGroup.get('email').hasError('required')">
+            * Email is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="registerGroup.get('email').hasError('email') ">
+            * Invalid email
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>
+            <b class="font text-monospace my-4">PASSWORD</b>
+        </mat-label>
+        <input matInput type="password" formControlName="passWord" required>
+        <mat-error *ngIf="registerGroup.get('passWord').hasError('required')">
+            * Password is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="registerGroup.get('passWord').hasError('pattern')">
+            * Does not match password pattern
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>
+            <b class="font text-monospace my-4">RE-ENTER PASSWORD</b>
+        </mat-label>
+        <input matInput type="password" formControlName="re_enterPassword" required>
+        <mat-error *ngIf="registerGroup.get('re_enterPassword').hasError('required')">
+            * Re enter password is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="registerGroup.get('re_enterPassword').hasError('validate')">
+            * Password Mismatch
+        </mat-error>
+    </mat-form-field>
+    <div>
+        <button [disabled]="registerGroup.invalid && registerGroup.dirty" mat-raised-button color="primary" class="d-inline-block register font" (click)="register()">Register</button>
+    </div>
+</div>
