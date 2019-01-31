@@ -1,21 +1,22 @@
 import { LayoutModule } from '@angular/cdk/layout';
 import { NgModule } from '@angular/core';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-    MatBadgeModule,
-    MatButtonToggleModule,
-    MatChipsModule,
-    MatMenuModule,
-    MatNativeDateModule,
-    MatPaginatorIntl,
-    MatPaginatorModule,
-    MatSelectModule,
-    MatSliderModule,
-    MatSnackBarModule,
-    MatSortModule,
-    MatTableModule,
-    MatToolbarModule,
-    NativeDateAdapter,
+  MatBadgeModule,
+  MatButtonToggleModule,
+  MatChipsModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorIntl,
+  MatPaginatorModule,
+  MatSelectModule,
+  MatSliderModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatTableModule,
+  MatToolbarModule,
+  NativeDateAdapter,
 } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -53,6 +54,7 @@ import { SocialComponent } from './social/social.component';
 import { TableComponent } from './table/table.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
+
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -119,7 +121,8 @@ const appRoutes: Routes = [
     MatSnackBarModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFirestoreModule
   ],
   exports: [
     MainComponent,

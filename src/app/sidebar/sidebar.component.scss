@@ -4,7 +4,7 @@
 
 .sidenav {
   width: 300px;
-  box-shadow: 3px 0 6px rgba(0,0,0,.24);
+  box-shadow: 3px 0 6px rgba(0, 0, 0, 0.24);
 }
 
 .box-shadow {
@@ -12,27 +12,93 @@
   z-index: 1;
 }
 
-.menu-bar{
-  background: url('../../assets/icons/menu-button-small.png') no-repeat center;
+.menu-bar {
+  background: url("../../assets/icons/menu-button-small.png") no-repeat center;
   background-size: 17px;
 }
 
 .main-logo {
-  background:url('../../assets/icons/burger-main-logo.png') no-repeat center;
+  background: url("../../assets/icons/burger-main-logo.png") no-repeat center;
   background-size: 35px;
-  height:40px;
-  width:35px;
+  height: 40px;
+  width: 35px;
 }
 
 .facebook {
-   background: url('../../assets/icons/facebook-logo.png') no-repeat center;
+  background: url("../../assets/icons/facebook-logo.png") no-repeat center;
 }
 
 .mat-sidenav-fixed {
-  position:  absolute !important;
+  position: absolute !important;
 }
 
-.main{
+.main {
   height: 100vh;
   overflow: auto;
+}
+
+.mat-nav-list .mat-list-item span {
+  color: #141414;
+}
+
+.mat-list .mat-list-item .mat-list-item-ripple :hover {
+  background: cyan;
+}
+.mat-list .mat-list-item .mat-list-item-ripple {
+  background: yellow;
+}
+
+.fas {
+  font-weight: 900;
+  position: relative;
+  top: 2px;
+  width: 25px;
+  margin: 0 8px;
+  text-align: center;
+}
+.mat-expansion-panel-body {
+  padding: 0 !important;
+}
+
+.item-list {
+  margin: 9px;
+}
+
+.mat-expansion-panel-header {
+  height: 48px !important;
+}
+
+.main {
+  background: #f3f3f3;
+}
+
+.fa-user-circle {
+  top: 6px;
+  right: 6px;
+}
+
+.search-bar {
+  width: 50%;
+  color: slategrey;
+  margin-top: 5px;
+  border: 0;
+  font-size: 15px;
+  padding: 1px 15px;
+  background: #f1f3f5;
+  border-radius: 20px;
+  min-width: 250px;
+}
+
+.fa-search {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  color: slategrey;
+  font-size: 15px;
+}
+
+.fa-bars {
+  width: auto;
+  font-size: 20px;
+  top: -4px;
 }

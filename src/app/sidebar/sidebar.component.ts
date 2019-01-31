@@ -1,32 +1,27 @@
-import {
-    animate,
-    state,
-    style,
-    transition,
-    trigger
-} from "@angular/animations";
-import { BreakpointObserver } from "@angular/cdk/layout";
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { Observable } from "rxjs";
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
-import { DataService } from "../data.service";
-import { AuthService } from "../auth.service";
+import { AuthService } from '../auth.service';
+import { DataService } from '../data.service';
+
 
 @Component({
-    selector: "sidebar",
-    templateUrl: "./sidebar.component.html",
-    styleUrls: ["./sidebar.component.scss"],
+    selector: 'sidebar',
+    templateUrl: './sidebar.component.html',
+    styleUrls: ['./sidebar.component.scss'],
     animations: [
-        trigger("flyInOut", [
-            state("in", style({ opacity: 1 })),
-            transition(":enter", [style({ opacity: 0 }), animate(1000)])
+        trigger('flyInOut', [
+            state('in', style({ opacity: 1 })),
+            transition(':enter', [style({ opacity: 0 }), animate(1000)])
         ])
     ]
 })
 export class SidebarComponent implements OnInit {
-    theme = "indigo";
-    active = "main";
+    theme = 'orange';
+    active = 'main';
     gridSize = 6;
     isHandset: Observable<boolean>;
 
@@ -35,7 +30,7 @@ export class SidebarComponent implements OnInit {
         private router: Router,
         private breakpointObserver: BreakpointObserver,
         private authService: AuthService
-    ) {}
+    ) { }
 
     changeGridSize(event: any) {
         this.gridSize = event.value;
@@ -46,13 +41,12 @@ export class SidebarComponent implements OnInit {
         this.theme = theme;
         DataService.themeEmitter.emit(theme);
     }
-
-    route(routeTo: string) {
+    private route(routeTo: string) {
         this.active = routeTo;
-        this.router.navigate(["/home/" + routeTo]);
+        this.router.navigate(['/home/' + routeTo]);
     }
 
-    getPage(outlet) {}
+    getPage(outlet) { }
 
     ngOnInit() {
         this.authService.getLoggedUserDetails();

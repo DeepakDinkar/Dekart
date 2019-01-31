@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 import { AuthService } from '../auth.service';
 import { DataService } from '../data.service';
-import { MatSnackBar } from '@angular/material';
+
 
 @Component({
     selector: 'app-user-login',
@@ -13,12 +15,15 @@ import { MatSnackBar } from '@angular/material';
 })
 export class UserLoginComponent implements OnInit {
     loginGroup: FormGroup;
+    invalidUser: boolean;
+    @Output() showProgress = new EventEmitter<boolean>();
     constructor(
         private router: Router,
         private formBuilder: FormBuilder,
         private authService: AuthService,
-        private matSnackBar: MatSnackBar
-    ) {}
+        private matSnackBar: MatSnackBar,
+        private afs: AngularFireDatabase
+    ) { }
 
     ngOnInit() {
         this.loginGroup = this.formBuilder.group({
@@ -28,21 +33,36 @@ export class UserLoginComponent implements OnInit {
     }
 
     submit() {
+        this.showProgress.emit(true);
         const value = this.loginGroup.value;
-        this.authService.signIn(value.email, value.passWord).then(result =>{
+        this.authService.signIn(value.email, value.passWord).then(result => {
+            this.showProgress.emit(false);
             this.router.navigate(['/home']);
+        }).catch(error => {
+            if (error.code) {
+                this.showProgress.emit(false);
+                this.invalidUser = true;
+            }
         });
     }
 
     loginWithGoogle() {
-        this.authService.signInWithGoogle();
+        this.showProgress.emit(true);
+        this.authService.signInWithGoogle().then(result => {
+            const users = this.afs.list('users');
+            users.push({ email: result.user.email, userName: result.user.displayName, profilePic: result.user.photoURL });
+            this.router.navigate(['/home']);
+        }).catch(error => {
+            this.showProgress.emit(false);
+            this.invalidUser = true;
+        });
     }
 
-    loginWithFacebook() {}
+    loginWithFacebook() { }
 
-    loginWithInstagram() {}
+    loginWithInstagram() { }
 
-    loginWithTwitter() {}
+    loginWithTwitter() { }
 
     register() {
         DataService.showLogin.emit(false);
@@ -51,7 +71,7 @@ export class UserLoginComponent implements OnInit {
     forgetPassword() {
         if (this.loginGroup.value.email) {
             this.authService.resetPassword(this.loginGroup.value.email).then(result => {
-                this.matSnackBar.open('', 'Reset Password link has been sent.', {duration: 3000});
+                this.matSnackBar.open('', 'Reset Password link has been sent.', { duration: 3000 });
             });
         }
     }

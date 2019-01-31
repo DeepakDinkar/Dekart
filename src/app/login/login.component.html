@@ -1,5 +1,5 @@
 <div [class]="theme">
-    <mat-progress-bar mode="buffer"></mat-progress-bar>
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgress"></mat-progress-bar>
     <div class="login-background">
         <div class="container-fluid" [@flyInOut]="'enter'">
             <div class="row">
@@ -12,32 +12,30 @@
                             <div class="col-sm">
                                 <i class="fas fa-tshirt"></i>
                                 <br><span class="brand-font">Fashion</span>
-                              </div>
-                              <div class="col-sm">
+                            </div>
+                            <div class="col-sm">
                                 <i class="fas fa-desktop"></i>
                                 <br><span class="brand-font">Electronics</span>
-                              </div>
-                              <div class="col-sm">
+                            </div>
+                            <div class="col-sm">
                                 <i class="fas fa-shoe-prints"></i>
                                 <br><span class="brand-font">Footwear</span>
-                              </div>
-                              <div class="col-sm">
+                            </div>
+                            <div class="col-sm">
                                 <i class="fas fa-shopping-basket"></i>
                                 <br><span class="brand-font">Grocery</span>
-                              </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col d-lg-none d-xl-none d-md-block brand-text">
-                        <i class="fab fa-phoenix-framework"></i>
+                    <i class="fab fa-phoenix-framework"></i>
                 </div>
                 <div class="col-xl-4 col-lg-4 offset-xl-0 offset-lg-0 offset-md-3 col-md-7 offset-sm-2 col-sm-8 loginwrap">
                     <div class="row">
                         <div>&nbsp;</div>
-                        <app-user-login *ngIf="showLogin"></app-user-login>
-                        <app-user-register
-                            *ngIf="!showLogin"
-                        ></app-user-register>
+                        <app-user-login *ngIf="showLogin" (showProgress)="loadProgress($event)"></app-user-login>
+                        <app-user-register *ngIf="!showLogin"></app-user-register>
                     </div>
                 </div>
             </div>

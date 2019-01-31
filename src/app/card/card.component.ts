@@ -1,7 +1,7 @@
-import { AfterContentInit, Component, OnInit } from '@angular/core';
-
 import { Color } from '../color';
 import { DataService } from '../data.service';
+import { AfterContentInit, Component, OnInit } from '@angular/core';
+
 
 @Component({
     selector: "app-card",
@@ -20,7 +20,7 @@ export class CardComponent implements OnInit, AfterContentInit {
         xs: 1
     };
     constructor(
-        private dataService: DataService,
+        private dataService: DataService
     ) {
         this.color = new Color().getRandomColor("Violet");
     }
@@ -29,5 +29,8 @@ export class CardComponent implements OnInit, AfterContentInit {
     }
 
     ngAfterContentInit() {
+        // this.observableMedia.asObservable().subscribe((change: MediaChange) => {
+        //     this.breakPoint = this.gridByBreakpoint[change.mqAlias];
+        // });
     }
 }

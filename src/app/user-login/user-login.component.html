@@ -2,6 +2,7 @@
     <div class="login-header pb-2">
         <span class="float-right forget-pwd accent" (click)="register()">Register</span>
         <h3><b style="color:#fbc02d">Login</b></h3>
+        <div class="invalid-error" *ngIf="invalidUser">Invalid Email/Password</div>
     </div>
     <mat-form-field appearance="outline">
         <mat-label>

@@ -1,7 +1,7 @@
+import { DataService } from '../data.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 
-import { DataService } from '../data.service';
 
 @Component({
     selector: 'app-login',
@@ -16,18 +16,22 @@ import { DataService } from '../data.service';
 })
 export class LoginComponent implements OnInit {
     theme = 'indigo';
-    loadProgress = false;
+    showProgress = false;
     showLogin = true;
     constructor() {
         DataService.showLogin.subscribe(this.show.bind(this));
         DataService.themeEmitter.subscribe(this.changeTheme.bind(this));
     }
 
-    ngOnInit() {}
+    ngOnInit() { }
+
     show(showLogin: boolean) {
         this.showLogin = showLogin;
     }
 
+    loadProgress(progress: boolean) {
+        this.showProgress = progress;
+    }
     changeTheme(theme: any) {
         this.theme = theme;
     }
