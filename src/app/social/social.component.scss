@@ -1,0 +1,40 @@
+.product {
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.cart-button {
+  margin-right: 10px;
+}
+
+.cart-button,
+.buy-button {
+  font-size: 20px;
+  height: 45px;
+}
+
+.products-container {
+  display: flex;
+  overflow: auto;
+  margin-bottom: 55px;
+}
+
+.card-image {
+  height: 65%;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.container-fluid {
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-chip {
+  background: #43a047 !important;
+  color: white !important;
+}

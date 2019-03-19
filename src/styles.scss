@@ -70,7 +70,7 @@ html{
 //   $indigo-app-accent,
 //   $indigo-app-warn
 // );
-$red-app-primary: mat-palette($mat-yellow, 700);
+$red-app-primary: mat-palette($mat-pink, 700);
 $red-app-accent: mat-palette($mat-grey, 700);
 $red-app-warn: mat-palette($mat-red, 400);
 $red-app-theme: mat-light-theme(
@@ -172,7 +172,7 @@ $red-app-theme: mat-light-theme(
 }
 
 // orange theme
-$orange-app-primary: mat-palette($mat-orange, 400);
+$orange-app-primary: mat-palette($mat-red, 400);
 $orange-app-accent: mat-palette($mat-cyan, 600);
 $orange-app-warn: mat-palette($mat-orange, 400);
 $orange-app-theme: mat-light-theme(
@@ -182,7 +182,7 @@ $orange-app-theme: mat-light-theme(
 );
 .orange {
   @include angular-material-theme($orange-app-theme);
-  $primary: #ffa726;
+  $primary: #ef5350;
   $accent: #00acc1;
   .primary {
     background-color: $primary;

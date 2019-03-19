@@ -51,7 +51,6 @@ import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SocialComponent } from './social/social.component';
-import { TableComponent } from './table/table.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
 
@@ -82,7 +81,6 @@ const appRoutes: Routes = [
     UserRegisterComponent,
     HomeComponent,
     SidebarComponent,
-    TableComponent,
     SocialComponent,
     ChatComponent
   ],

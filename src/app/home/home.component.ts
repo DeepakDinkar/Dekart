@@ -3,7 +3,7 @@ import { Card } from '../card/card';
 import { Color } from '../color';
 import { DataService } from '../data.service';
 import { AfterContentInit, Component, ComponentFactoryResolver, OnInit, ViewChild } from '@angular/core';
-
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
     selector: 'home',
@@ -19,13 +19,17 @@ export class HomeComponent implements OnInit, AfterContentInit {
     addCard: Card[];
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
-        private dataService: DataService
+        private dataService: DataService,
+        private afs: AngularFireDatabase
     ) { }
 
     ngOnInit() {
         this.dataService.gridObject.subscribe(this.getGridSize.bind(this));
         this.onResize(window.innerWidth);
-        // this.getData();
+        const users = this.afs.list('products');
+        users.valueChanges().subscribe(data => {
+            console.log(data);
+        });
     }
 
     ngAfterContentInit() {
@@ -262,7 +266,7 @@ export class HomeComponent implements OnInit, AfterContentInit {
         this.loadComponent();
     }
 
-    private onResize(width: any) {
+    onResize(width: any) {
         if (width >= 1500) {
             this.gridSize = 5;
         } else if (width >= 1100 && width <= 1499) {

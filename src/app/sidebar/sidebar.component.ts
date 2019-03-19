@@ -41,7 +41,7 @@ export class SidebarComponent implements OnInit {
         this.theme = theme;
         DataService.themeEmitter.emit(theme);
     }
-    private route(routeTo: string) {
+    route(routeTo: string) {
         this.active = routeTo;
         this.router.navigate(['/home/' + routeTo]);
     }
