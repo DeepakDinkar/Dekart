@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AuthService } from 'src/app/core/auth.service';
 import { DataService } from 'src/app/core/data.service';
+import { ROUTES } from 'src/app/app-route.constants';
 
 @Component({
     selector: 'app-user-register',
@@ -52,7 +53,7 @@ export class UserRegisterComponent implements OnInit {
             const value = this.afs.list('users');
             value.push({ email: register.email, userName: register.userName, profilePic: '' });
             this.showProgress.emit(false);
-            this.router.navigate(['/home']);
+            this.router.navigate([ROUTES.MAIN]);
         }).catch(error => {
             this.isRegisterFail = true;
         });
