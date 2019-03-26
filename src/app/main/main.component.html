@@ -13,18 +13,19 @@
                     </div>
 
                     <div class="h3 font float-right d-none d-md-block">
-                        <button mat-button class="font font-weight-bold mx-2"
-                            [ngClass]="{ 'accent-bg': 'main' === active }" (click)="navigate(ROUTES.HOME)">
+                        <button mat-button class="font font-weight-bold mx-2 accent-bg" (click)="navigate(ROUTES.HOME)">
                             Home
                         </button>
-                        <button mat-button class="font font-weight-bold mx-2"
-                            [ngClass]="{ 'accent-bg': 'chat' === active }" (click)="route('chat')">
-                            Chats
+                        <button mat-icon-button class="font font-weight-bold mx-2" (click)="navigate(ROUTES.WISHLIST)">
+                            <i class="fas fa-star" id="wishlist" matTooltip="Wish List"></i>
                         </button>
-                        <button mat-button class="font font-weight-bold mx-2">
-                            About
+                        <button mat-icon-button class="font font-weight-bold mx-2" (click)="navigate(ROUTES.NOTIFICATIONS)">
+                            <i class="fas fa-bell" id="notification" matTooltip="Notifications"></i>
                         </button>
-                        <i class="fas fa-user-circle" matTooltip="Profile"></i>
+                        <button mat-icon-button class="font font-weight-bold mx-2" (click)="navigate(ROUTES.PROFILE)">
+                            <i class="fas fa-user-circle" matTooltip="Profile" id="profile"></i>
+                        </button>
+
                     </div>
                 </div>
             </mat-toolbar>

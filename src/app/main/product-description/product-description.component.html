@@ -4,7 +4,7 @@
             <img src="assets/images/3-could-modular-shoes-be-the-next-big-sneaker-drop.webp" class="product"></div>
         <div class="col-md-5 col-lg-5 col-xl-5 p-4">
             <span class="product-brand" style="font-weight: bold;font-size: 80px;">Nike <button mat-mini-fab
-                    color="accent" class="pull-right" style="top: 30px;">
+                    color="accent" class="pull-right" style="top: 30px;float: right;">
                     <i class="fas fa-star"></i>
                 </button></span>
             <div class="product-title" style="font-size: 20px;">
@@ -20,6 +20,7 @@
                 <span class="buy-count">(163)</span>
                 <div class="price" style="display: block;font-weight: 500;font-size: 35px;margin-top: 20px;">$560
                     <span style="font-size: 15px; text-decoration: line-through">$750</span>
+                    <span style="font-size: 20px;margin: 0 10px;color: gray;">(23 Ratings & 3 Reviews)</span>
                     <span>
                         <mat-chip-list>
                             <mat-chip>13% Off</mat-chip>
@@ -81,16 +82,15 @@
                     </mat-tab>
                 </mat-tab-group>
                 <div class="py-4">
-                    <button mat-flat-button color="primary" class="cart-button m-2">Add Cart <i
+                    <button mat-flat-button color="primary" class="cart-button m-2" (click)="addToCart()">Add Cart <i
                             class="fas fa-cart-plus px-4"></i></button>
-                    <button mat-flat-button color="accent" class="buy-button m-2">Buy Now</button>
+                    <button mat-flat-button color="accent" class="buy-button m-2" (click)="navigate(ROUTES.BUY_SECTION)">Buy Now</button>
                 </div>
             </div>
         </div>
     </div>
     <div class="m-4 p-3">
-        <span style="    font-size: 20px;
-  font-weight: bold;" class="m-2"> Similar Products</span>
+        <span style="font-size: 20px; font-weight: bold;" class="m-2"> Similar Products</span>
         <mat-grid-list [cols]="gridSize" rowHeight="450px" (window:resize)="onResize($event.target.innerWidth)">
             <mat-grid-tile *ngFor="let card of cards">
                 <app-card></app-card>
@@ -98,11 +98,7 @@
         </mat-grid-list>
     </div>
 </div>
-<div class="footer primary" style="    width: 100%;
-height: 160px;
-text-align: center;
-padding: 30px;
-font-size: 30px;">
+<div class="footer primary" style="width: 100%;height: 160px;text-align: center;padding: 30px;font-size: 30px;">
     <span><i class="fab fa-phoenix-framework"></i> Dekart</span>
     <img [src]="img" *ngIf="img">
 </div>

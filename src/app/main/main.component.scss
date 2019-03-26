@@ -75,11 +75,6 @@
     background: #f3f3f3;
 }
 
-.fa-user-circle {
-    top: 6px;
-    right: 6px;
-}
-
 .search-bar {
     width: 50%;
     color: slategrey;
@@ -104,4 +99,9 @@
     width: auto;
     font-size: 20px;
     top: -4px;
+}
+
+#profile, #notification, #wishlist {
+    font-size: 17px;
+    margin-bottom: 5px;
 }

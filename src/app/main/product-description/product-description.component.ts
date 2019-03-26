@@ -1,6 +1,9 @@
+import { MatSnackBar } from '@angular/material';
 import { AfterContentInit, Component, ElementRef, OnInit } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireStorage } from 'angularfire2/storage';
+import { ROUTES } from 'src/app/app-route.constants';
+import { Router } from '@angular/router';
 
 export interface PeriodicElement {
 	name: string;
@@ -34,8 +37,15 @@ export class ProductDescriptionComponent implements OnInit, AfterContentInit {
 	displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
 	dataSource = ELEMENT_DATA;
 	img: any;
+	ROUTES = ROUTES;
 	list: AngularFireList<any[]>;
-	constructor(private db: AngularFireDatabase, private elementRef: ElementRef, private storage: AngularFireStorage) { }
+	constructor(
+		private db: AngularFireDatabase,
+		private elementRef: ElementRef,
+		private storage: AngularFireStorage,
+		private matSnackBar: MatSnackBar,
+		private router: Router
+	) { }
 
 	ngOnInit() {
 		this.onResize(window.innerWidth);
@@ -120,7 +130,14 @@ export class ProductDescriptionComponent implements OnInit, AfterContentInit {
 		ref.getDownloadURL().subscribe(data => {
 			this.img = data;
 		});
+	}
 
+	addToCart() {
+		this.matSnackBar.open('', 'Successfully Added to Cart! :)', { duration: 3000 });
+	}
+
+	navigate(route: string) {
+		this.router.navigate([route]);
 	}
 
 }
