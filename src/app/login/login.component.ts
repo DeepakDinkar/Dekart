@@ -1,7 +1,6 @@
-import { DataService } from '../data.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-
+import { DataService } from '../core/data.service';
 
 @Component({
     selector: 'app-login',

@@ -1,21 +1,116 @@
-<nav class="navbar navbar-expand-xl bg-light fixed-top shadow-lg">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <div class="float-right">
-        <a mat-button class="font nounderline" color="primary">Home</a>
-        <a mat-button class="font nounderline" color="accent">Chats</a>
-        <a mat-button class="font nounderline" color="warn">Social</a>
-        <a mat-button class="font nounderline" color="foreground">About</a>
-    </div>
-</nav>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-6 col-mat-6 col-sm-1 offset-lg-3">
-            <div class="row">
-                <mat-grid-list cols="2">
-                </mat-grid-list>
-            </div>
-            <div class="row">
-            </div>
+<div [class]="theme">
+    <div class="container-fluid p-0 box-shadow">
+        <div class="row">
+            <mat-toolbar color="primary">
+                <button class="mx-3" type="button" aria-label="Toggle sidenav" mat-icon-button
+                    (click)="drawer.toggle()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="w-100 mx-4">
+                    <div class="w-50 d-inline position-relative">
+                        <input type="text" class="search-bar" placeholder="Search anything on Dekart!">
+                        <i class="fas fa-search"></i>
+                    </div>
+
+                    <div class="h3 font float-right d-none d-md-block">
+                        <button mat-button class="font font-weight-bold mx-2"
+                            [ngClass]="{ 'accent-bg': 'main' === active }" (click)="navigate(ROUTES.HOME)">
+                            Home
+                        </button>
+                        <button mat-button class="font font-weight-bold mx-2"
+                            [ngClass]="{ 'accent-bg': 'chat' === active }" (click)="route('chat')">
+                            Chats
+                        </button>
+                        <button mat-button class="font font-weight-bold mx-2">
+                            About
+                        </button>
+                        <i class="fas fa-user-circle" matTooltip="Profile"></i>
+                    </div>
+                </div>
+            </mat-toolbar>
         </div>
+    </div>
+    <div>
+        <mat-sidenav-container class="sidenav-container">
+            <mat-sidenav #drawer class="sidenav primary" fixedInViewport="true" [mode]="'over'">
+                <mat-nav-list>
+                    <mat-expansion-panel class="primary" [expanded]="true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title (click)="navigate(ROUTES.PRODUCT_LIST)">
+                                <i class="fas fa-desktop"></i> Electronics
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <mat-nav-list>
+                            <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST)">
+                                <span class="font-white sub-item-list"><i class="fas fa-mobile"></i>Mobile</span>
+                            </a>
+                            <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST)">
+                                <span class="font-white sub-item-list"><i class="fas fa-laptop"></i>Laptops</span>
+                            </a>
+                            <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST)">
+                                <span class="font-white sub-item-list"><i class="fas fa-calculator"></i>Mobile
+                                    Accessories</span>
+                            </a>
+                        </mat-nav-list>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel class="primary">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title (click)="navigate(ROUTES.PRODUCT_LIST)">
+                                <i class="fas fa-tshirt"></i>Fashion
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <mat-nav-list>
+                            <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST)">
+                                <span class="font-white sub-item-list"><i class="fas fa-male"></i>Men</span>
+                            </a>
+                            <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST)">
+                                <span class="font-white sub-item-list"><i class="fas fa-female"></i>Women</span>
+                            </a>
+                            <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST)">
+                                <span class="font-white sub-item-list"><i class="fas fa-baby"></i>Kids</span>
+                            </a>
+                        </mat-nav-list>
+                    </mat-expansion-panel>
+                    <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST)">
+                        <span class="font-white item-list"><i class="fas fa-home"></i>Home and Furniture</span>
+                    </a>
+                    <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST)">
+                        <span class="font-white item-list"><i class="fas fa-tv"></i>TVs & Appliances</span>
+                    </a>
+                    <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST)">
+                        <span class="font-white item-list"><i class="fas fa-guitar"></i>Toys and Baby</span>
+                    </a>
+                    <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST)">
+                        <span class="font-white item-list"><i class="fas fa-crown"></i>Beauty and Personal Care</span>
+                    </a>
+                    <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST)">
+                        <span class="font-white item-list"><i class="fas fa-futbol"></i>Sports, Books and More</span>
+                    </a>
+                    <a mat-list-item (click)="navigate(ROUTES.ORDERS)">
+                        <span class="font-white item-list"><i class="fas fa-luggage-cart"></i>My Orders</span>
+                    </a>
+                    <a mat-list-item (click)="navigate(ROUTES.REWARDS)">
+                        <span class="font-white item-list"><i class="fas fa-store"></i>My Rewards</span>
+                    </a>
+                    <a mat-list-item (click)="navigate(ROUTES.NOTIFICATIONS)">
+                        <span class="font-white item-list"><i class="fas fa-bell"></i>Notifications</span>
+                    </a>
+                    <a mat-list-item (click)="navigate(ROUTES.CART)">
+                        <span class="font-white item-list"><i class="fas fa-shopping-cart"></i>My Cart</span>
+                    </a>
+                    <a mat-list-item (click)="navigate(ROUTES.WISHLIST)">
+                        <span class="font-white item-list"><i class="fas fa-star"></i>My Wishlist</span>
+                    </a>
+                    <a mat-list-item (click)="navigate(ROUTES.HELP)">
+                        <span class="font-white item-list"><i class="fas fa-bell"></i>Help</span>
+                    </a>
+                </mat-nav-list>
+            </mat-sidenav>
+            <mat-sidenav-content>
+                <div class="main" [@flyInOut]="getPage(appOutlet)">
+                    <router-outlet #appOutlet="outlet"></router-outlet>
+                </div>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
     </div>
 </div>
