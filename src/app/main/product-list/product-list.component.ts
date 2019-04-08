@@ -1,276 +1,65 @@
+import { FirebaseStorageService } from './../../angular-firebase/firebase-storage.service';
+import { FirebaseDatabaseService } from './../../angular-firebase/firebase-database.service';
 import { AfterContentInit, Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
 import { Card } from 'src/app/shared/components/card/card';
-
 import { Color } from './../../core/color';
-import { DataService } from './../../core/data.service';
-
+import { Routes, Route, Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-	selector: 'app-product-list',
-	templateUrl: './product-list.component.html',
-	styleUrls: ['./product-list.component.scss']
+    selector: 'app-product-list',
+    templateUrl: './product-list.component.html',
+    styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent implements OnInit, AfterContentInit {
-	color = new Color();
-	width = window.innerWidth;
-	gridSize = 5;
-	cards: any[];
-	addCard: Card[];
-	constructor(
-		private dataService: DataService,
-		private afs: AngularFireDatabase
-	) { }
+export class ProductListComponent implements OnInit {
+    width = window.innerWidth;
+    gridSize = 5;
+    cards: any[] = [];
+    currentPath: string;
 
-	ngOnInit() {
-		this.dataService.gridObject.subscribe(this.getGridSize.bind(this));
-		this.onResize(window.innerWidth);
-		const users = this.afs.list('products');
-		users.valueChanges().subscribe(data => {
-			console.log(data);
-		});
-	}
+    constructor(
+        private route: ActivatedRoute,
+        private database: FirebaseDatabaseService,
+        private storage: FirebaseStorageService
+    ) {}
 
-	ngAfterContentInit() {
-		this.cards = [
-			{
-				id: 1,
-				title: 'Card 1',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 2,
-				title: 'Card 2',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 3,
-				title: 'Card 3',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 4,
-				title: 'Card 4',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 5,
-				title: 'Card 2',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 6,
-				title: 'Card 3',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 1,
-				title: 'Card 1',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 2,
-				title: 'Card 2',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 3,
-				title: 'Card 3',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 4,
-				title: 'Card 4',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 5,
-				title: 'Card 2',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 6,
-				title: 'Card 3',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 1,
-				title: 'Card 1',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 2,
-				title: 'Card 2',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 3,
-				title: 'Card 3',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 4,
-				title: 'Card 4',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 5,
-				title: 'Card 2',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 6,
-				title: 'Card 3',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 1,
-				title: 'Card 1',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 2,
-				title: 'Card 2',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 3,
-				title: 'Card 3',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 4,
-				title: 'Card 4',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 5,
-				title: 'Card 2',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 6,
-				title: 'Card 3',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 1,
-				title: 'Card 1',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 2,
-				title: 'Card 2',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 3,
-				title: 'Card 3',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 4,
-				title: 'Card 4',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 5,
-				title: 'Card 2',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 6,
-				title: 'Card 3',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			},
-			{
-				id: 7,
-				title: 'Card 4',
-				cols: this.getSize(),
-				rows: this.getSize(),
-				src: 'assets/images/Chrysanthemum.jpg'
-			}
-		];
-	}
+    ngOnInit() {
+        this.route.queryParams.subscribe(params => {
+            this.setCards(params.data);
+            this.currentPath = params.data;
+        });
+        this.onResize(window.innerWidth);
+    }
 
-	private getGridSize(size: number) {
-		this.gridSize = size;
-	}
-	private getSize() {
-		return Math.floor(Math.random() * (this.gridSize - 1) + 1);
-	}
+    private setCards(path: string) {
+        this.cards = [];
+        this.database.getData(path).subscribe(cards => {
+            for (const card of cards) {
+                this.storage.getStorageData(card.src).subscribe(image => {
+                    card.image = image;
+                    card.offer = this.setOffer(card.basePrice, card.offerPrice);
+                    this.cards.push(card);
+                });
+            }
+        });
+    }
 
-	onResize(width: any) {
-		if (width >= 1500) {
-			this.gridSize = 5;
-		} else if (width >= 1100 && width <= 1499) {
-			this.gridSize = 4;
-		} else if (width >= 800 && width <= 1099) {
-			this.gridSize = 3;
-		} else if (width >= 600 && width <= 799) {
-			this.gridSize = 2;
-		} else if (width <= 599) {
-			this.gridSize = 1;
-		}
-	}
+    private setOffer(basePrice: string, offerPrice: string): number {
+        basePrice = basePrice.replace(/,/g, '');
+        offerPrice = offerPrice.replace(/,/g, '');
+        return Math.floor((Number(basePrice) - Number(offerPrice)) / Number(basePrice) * 100);
+    }
+
+    onResize(width: any) {
+        if (width >= 1500) {
+            this.gridSize = 5;
+        } else if (width >= 1100 && width <= 1499) {
+            this.gridSize = 4;
+        } else if (width >= 800 && width <= 1099) {
+            this.gridSize = 3;
+        } else if (width >= 600 && width <= 799) {
+            this.gridSize = 2;
+        } else if (width <= 599) {
+            this.gridSize = 1;
+        }
+    }
 }

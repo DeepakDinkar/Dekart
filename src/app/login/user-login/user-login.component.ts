@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { ROUTES } from 'src/app/app-route.constants';
 import { AuthService } from 'src/app/core/auth.service';
-import { DataService } from 'src/app/core/data.service';
+import { LoginComponent } from '../login.component';
 
 @Component({
     selector: 'app-user-login',
@@ -35,6 +35,8 @@ export class UserLoginComponent implements OnInit {
         this.showProgress.emit(true);
         const value = this.loginGroup.value;
         this.authService.signIn(value.email, value.passWord).then(result => {
+            sessionStorage.setItem('userId', result.user.uid);
+            console.log(result.user.uid);
             this.showProgress.emit(false);
             this.router.navigate([ROUTES.MAIN]);
         }).catch(error => {
@@ -48,6 +50,8 @@ export class UserLoginComponent implements OnInit {
     loginWithGoogle() {
         this.showProgress.emit(true);
         this.authService.signInWithGoogle().then(result => {
+            sessionStorage.setItem('userId', result.user.uid);
+            console.log(result.user.uid);
             const users = this.afs.list('users');
             users.valueChanges().subscribe(existingUsers => {
                 const user = <any>existingUsers;
@@ -69,7 +73,7 @@ export class UserLoginComponent implements OnInit {
     loginWithTwitter() { }
 
     register() {
-        DataService.showLogin.emit(false);
+        LoginComponent.loginEmitter.emit(false);
     }
 
     forgetPassword() {
