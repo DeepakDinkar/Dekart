@@ -18,6 +18,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { RewardsComponent } from './rewards/rewards.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { HelpComponent } from './help/help.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
 	imports: [
@@ -25,7 +26,8 @@ import { HelpComponent } from './help/help.component';
 		SharedModule,
 		AngularMaterialModule,
 		AngularFirebaseModule,
-		AppRoutingModule
+		AppRoutingModule,
+		ReactiveFormsModule
 	],
 	declarations: [
 		HomeComponent,

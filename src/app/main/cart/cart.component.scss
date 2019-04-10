@@ -1,0 +1,105 @@
+.no-order-wrap {
+    text-align: center;
+    margin: 10% auto;
+}
+
+.fa-bomb {
+    font-size: 200px;
+    position: relative;
+    left: 20px;
+}
+
+.no-order {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.cart-wrap {
+    padding: 10px;
+}
+
+.dashboard-card {
+    margin: 10px;
+}
+
+.dashboard-card-content {
+    height: 100%;
+}
+
+.product-brand {
+    display: block;
+    text-align: left;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.product-title {
+    text-align: left;
+    font-size: 14px;
+    color: slategray;
+}
+
+.price {
+    text-align: left;
+    font-size: 25px;
+    display: block;
+    color: yellowgreen;
+}
+
+.rating {
+    color: tomato;
+    background: white;
+    padding: 3px 5px;
+    border-radius: 20px;
+    float: right;
+    position: relative;
+    font-size: 11px;
+}
+
+.buy-count {
+    float: right;
+    position: relative;
+    top: 20px;
+    left: 70px;
+}
+
+.price-wrap {
+    width: 100%;
+    display: inline-block;
+    text-align: left;
+}
+
+.base-price {
+    text-decoration: line-through;
+    color: #f9a825;
+    font-size: 16px;
+    position: relative;
+    bottom: 7px;
+}
+
+.offer {
+    font-size: 10px;
+    font-weight: bold;
+    padding: 0 10px;
+    position: relative;
+    bottom: 9px;
+}
+
+.product-image {
+    height: 225px;
+    width: 100%;
+}
+
+.total-price {
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+}
+
+.buy-now {
+    float: right;
+    position: relative;
+    bottom: 60px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}

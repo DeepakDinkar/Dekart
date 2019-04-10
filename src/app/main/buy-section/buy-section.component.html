@@ -1,3 +1,100 @@
-<p>
-  buy-section works!
-</p>
+<div class="delivery-wrap">
+	<form [formGroup]="deliveryGroup">
+		<mat-card>
+			<mat-card-content>
+				<div class="delivery-text">Enter Delivery Address</div>
+				<mat-form-field appearance="outline" id="address">
+					<mat-label>
+						<b class="font text-monospace my-4">Delivery Address</b>
+					</mat-label>
+					<textarea matInput required formControlName="address"></textarea>
+					<mat-error *ngIf="deliveryGroup.get('address').hasError('required')">
+						* Address is <strong>required</strong>
+					</mat-error>
+				</mat-form-field>
+				<mat-form-field appearance="outline">
+					<mat-label>
+						<b class="font text-monospace my-4">Pincode</b>
+					</mat-label>
+					<input type="number" matInput required formControlName="pincode" maxlength="6" />
+					<mat-error *ngIf="deliveryGroup.get('pincode').hasError('required')">
+						* Pincode is <strong>required</strong>
+					</mat-error>
+				</mat-form-field>
+				<mat-form-field appearance="outline">
+					<mat-label>
+						<b class="font text-monospace my-4">Phone number</b>
+					</mat-label>
+					<input type="number" matInput required formControlName="phoneNumber" maxlength="6" />
+					<mat-error *ngIf="deliveryGroup.get('phoneNumber').hasError('required')">
+						* Phone number is <strong>required</strong>
+					</mat-error>
+				</mat-form-field>
+				<mat-form-field appearance="outline">
+					<mat-label>
+						<b class="font text-monospace my-4">Landmark</b>
+					</mat-label>
+					<input type="text" matInput required formControlName="landMark" />
+					<mat-error *ngIf="deliveryGroup.get('landMark').hasError('required')">
+						* Landmark is <strong>required</strong>
+					</mat-error>
+				</mat-form-field>
+			</mat-card-content>
+		</mat-card>
+	</form>
+</div>
+
+<div class="cart-wrap">
+	<mat-card class="dashboard-card" *ngFor="let card of cartItems">
+		<mat-card-content class="dashboard-card-content mx-2">
+			<div class="row">
+				<div class="col-xl-4">
+					<img class="product-image" [src]="card?.image" />
+				</div>
+				<div class="col-xl-8">
+					<span class="product-brand"> {{card.brand}} </span>
+					<div class="product-title">
+						{{card.productName}}
+						<br />
+						(22 Ratings and 3 Reviews)
+					</div>
+					<div>
+						<span class="rating">4.5
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star-half"></i> </span><span class="buy-count">(163)</span>
+						<span class="price">₹ {{card.offerPrice}} </span>
+						<div class="price-wrap">
+							<span class="base-price">₹ {{card.basePrice}} </span>
+							<span class="offer">{{card.offer}} % Off</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</mat-card-content>
+	</mat-card>
+</div>
+<div class="total-price">
+	<mat-card>
+		<mat-card-content>
+			<div class="pull-right">
+				<span>Total</span>
+				<span class="price">₹ {{totalOfferPrice}}</span>
+				<div class="price-wrap">
+					<span class="base-price">₹ {{totalPrice}} </span>
+					<span class="offer">{{offer}} % Off</span>
+				</div>
+				<button mat-raised-button color="primary" class="buy-now" (click)="conformOrder()"
+				[disabled]="deliveryGroup.invalid">CONFORM
+					ORDER</button>
+			</div>
+		</mat-card-content>
+	</mat-card>
+</div>
+<div class="no-order-wrap" *ngIf="cartItems.length === 0">
+	<i class="fas fa-bomb accent"></i>
+	<div class="no-order primary-color">No Items in cart!</div>
+	<div class="shopping-text primary-color">Continue your shopping.</div>
+</div>
