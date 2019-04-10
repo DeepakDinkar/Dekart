@@ -16,16 +16,11 @@
                         <button mat-button class="font font-weight-bold mx-2 accent-bg" (click)="navigate(ROUTES.HOME)">
                             Home
                         </button>
-                        <button mat-icon-button class="font font-weight-bold mx-2" (click)="navigate(ROUTES.WISHLIST)">
-                            <i class="fas fa-star" id="wishlist" matTooltip="Wish List"></i>
-                        </button>
-                        <button mat-icon-button class="font font-weight-bold mx-2" (click)="navigate(ROUTES.NOTIFICATIONS)">
-                            <i class="fas fa-bell" id="notification" matTooltip="Notifications"></i>
-                        </button>
-                        <button mat-icon-button class="font font-weight-bold mx-2" (click)="navigate(ROUTES.PROFILE)">
-                            <i class="fas fa-user-circle" matTooltip="Profile" id="profile"></i>
-                        </button>
-
+                        <button mat-icon-button><i class="fas fa-bell" matTooltip="Notifications"></i>
+                            <mat-icon [matBadge]="totalCartItems" matBadgeColor="accent"></mat-icon></button>
+                        <button mat-icon-button (click)="navigate(ROUTES.CART)"><i class="fas fa-shopping-cart" matTooltip="My Cart"></i>
+                            </button>
+                        <button mat-icon-button><i class="fas fa-user-circle" matTooltip="Profile"></i></button>
                     </div>
                 </div>
             </mat-toolbar>
@@ -37,18 +32,18 @@
                 <mat-nav-list>
                     <mat-expansion-panel class="primary" [expanded]="true">
                         <mat-expansion-panel-header>
-                            <mat-panel-title (click)="navigate(ROUTES.PRODUCT_LIST)">
+                            <mat-panel-title>
                                 <i class="fas fa-desktop"></i> Electronics
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <mat-nav-list>
-                            <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST)">
+                            <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST, ROUTE_PARAMS.MOBILES)">
                                 <span class="font-white sub-item-list"><i class="fas fa-mobile"></i>Mobile</span>
                             </a>
-                            <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST)">
+                            <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST, ROUTE_PARAMS.LAPTOPS)">
                                 <span class="font-white sub-item-list"><i class="fas fa-laptop"></i>Laptops</span>
                             </a>
-                            <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST)">
+                            <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST, ROUTE_PARAMS.MOBILE_ACCESSORIES)">
                                 <span class="font-white sub-item-list"><i class="fas fa-calculator"></i>Mobile
                                     Accessories</span>
                             </a>
@@ -56,35 +51,35 @@
                     </mat-expansion-panel>
                     <mat-expansion-panel class="primary">
                         <mat-expansion-panel-header>
-                            <mat-panel-title (click)="navigate(ROUTES.PRODUCT_LIST)">
+                            <mat-panel-title>
                                 <i class="fas fa-tshirt"></i>Fashion
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <mat-nav-list>
-                            <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST)">
+                            <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST, ROUTE_PARAMS.MEN)">
                                 <span class="font-white sub-item-list"><i class="fas fa-male"></i>Men</span>
                             </a>
-                            <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST)">
+                            <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST, ROUTE_PARAMS.WOMEN)">
                                 <span class="font-white sub-item-list"><i class="fas fa-female"></i>Women</span>
                             </a>
-                            <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST)">
+                            <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST, ROUTE_PARAMS.KIDS)">
                                 <span class="font-white sub-item-list"><i class="fas fa-baby"></i>Kids</span>
                             </a>
                         </mat-nav-list>
                     </mat-expansion-panel>
-                    <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST)">
+                    <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST, ROUTE_PARAMS.HOME_FURNITURES)">
                         <span class="font-white item-list"><i class="fas fa-home"></i>Home and Furniture</span>
                     </a>
-                    <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST)">
+                    <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST, ROUTE_PARAMS.TV_APPLIANCES)">
                         <span class="font-white item-list"><i class="fas fa-tv"></i>TVs & Appliances</span>
                     </a>
-                    <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST)">
+                    <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST, ROUTE_PARAMS.TOYS_BABY)">
                         <span class="font-white item-list"><i class="fas fa-guitar"></i>Toys and Baby</span>
                     </a>
-                    <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST)">
+                    <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST, ROUTE_PARAMS.BEAUTY_PERSONAL_CARE)">
                         <span class="font-white item-list"><i class="fas fa-crown"></i>Beauty and Personal Care</span>
                     </a>
-                    <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST)">
+                    <a mat-list-item (click)="navigate(ROUTES.PRODUCT_LIST, ROUTE_PARAMS.SPORTS_BOOKS)">
                         <span class="font-white item-list"><i class="fas fa-futbol"></i>Sports, Books and More</span>
                     </a>
                     <a mat-list-item (click)="navigate(ROUTES.ORDERS)">

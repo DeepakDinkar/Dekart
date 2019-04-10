@@ -3,8 +3,8 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { Router } from '@angular/router';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AuthService } from 'src/app/core/auth.service';
-import { DataService } from 'src/app/core/data.service';
 import { ROUTES } from 'src/app/app-route.constants';
+import { LoginComponent } from '../login.component';
 
 @Component({
     selector: 'app-user-register',
@@ -33,7 +33,7 @@ export class UserRegisterComponent implements OnInit {
     }
 
     login() {
-        DataService.showLogin.emit(true);
+        LoginComponent.loginEmitter.emit(true);
     }
 
     private validateReEnterPassword(control: AbstractControl) {
@@ -50,6 +50,8 @@ export class UserRegisterComponent implements OnInit {
         this.showProgress.emit(true);
         const register = this.registerGroup.value;
         this.authService.signUp(register.email, register.passWord).then(result => {
+            sessionStorage.setItem('userId', result.user.uid);
+            console.log(result.user.uid);
             const value = this.afs.list('users');
             value.push({ email: register.email, userName: register.userName, profilePic: '' });
             this.showProgress.emit(false);

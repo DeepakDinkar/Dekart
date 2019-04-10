@@ -1,5 +1,4 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { DataService } from './../../core/data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -11,7 +10,6 @@ export class HomeComponent implements OnInit {
     cards: any[];
     cols: number;
     constructor(
-        private dataService: DataService,
         private breakpointObserver: BreakpointObserver
     ) {
         this.breakpointObserver.observe(['(min-width:550px)']).subscribe(result => {
@@ -20,6 +18,5 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.cards = this.dataService.getData();
     }
 }

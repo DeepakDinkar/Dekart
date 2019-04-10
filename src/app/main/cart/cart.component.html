@@ -1,3 +1,40 @@
-<p>
-  cart works!
-</p>
+<div class="cart-wrap">
+    <mat-card class="dashboard-card" *ngFor="let card of cartItems">
+        <mat-card-content class="dashboard-card-content mx-2">
+            <div class="row">
+                <div class="col-xl-4">
+                    <img class="product-image" [src]="card?.image"
+                    />
+                </div>
+                <div class="col-xl-8">
+                    <span class="product-brand"> {{card.brand}} </span>
+                    <div class="product-title">
+                        {{card.productName}}
+                        <br />
+                        (22 Ratings and 3 Reviews)
+                    </div>
+                    <div>
+                        <span class="rating"
+                            >4.5
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half"></i> </span
+                        ><span class="buy-count">(163)</span>
+                        <span class="price">₹ {{card.offerPrice}} </span>
+                        <div class="price-wrap">
+                            <span class="base-price">₹ {{card.basePrice}} </span>
+                            <span class="offer">{{card.offer}} % Off</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
+<div class="no-order-wrap" *ngIf="cartItems.length === 0">
+    <i class="fas fa-bomb accent"></i>
+    <div class="no-order primary-color">No Items in cart!</div>
+    <div class="shopping-text primary-color">Continue your shopping.</div>
+</div>
