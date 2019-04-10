@@ -1,22 +1,35 @@
-<div (click)="navigate(ROUTES.PRODUCT_DESCRIPTION)">
+<div (click)="navigate(ROUTES.PRODUCT_DESCRIPTION, card)">
     <mat-card class="dashboard-card">
         <mat-card-header>
-            <mat-card-title>
-            </mat-card-title>
+            <mat-card-title> </mat-card-title>
         </mat-card-header>
-        <img class="card-image" src="assets/images/shoe-product2.jpg" alt="Photo of a Shiba Inu">
+        <img
+            class="card-image"
+            [src]="card.image"
+            alt="Photo of a Shiba Inu"
+            *ngIf="card"
+        />
         <mat-card-content class="dashboard-card-content mx-2">
-            <span class="product-brand">Nike</span>
-            <div class="product-title">Revolution 4 Running Shoes for Men (Grey)</div>
+            <span class="product-brand">{{ card.brand }}</span>
+            <div class="product-title">
+                {{ card.productName }}
+                <br />
+                (22 Ratings and 3 Reviews)
+            </div>
             <div>
-                <span class="rating">4.5
+                <span class="rating"
+                    >4.5
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half"></i>
-                </span><span class="buy-count">(163)</span>
-                <span class="price">$560</span>
+                    <i class="fas fa-star-half"></i> </span
+                ><span class="buy-count">(163)</span>
+                <span class="price">₹ {{ card.offerPrice }}</span>
+                <div class="price-wrap">
+                    <span class="base-price">₹ {{ card.basePrice }}</span>
+                    <span class="offer">{{card.offer}}% Off</span>
+                </div>
             </div>
         </mat-card-content>
     </mat-card>
